@@ -10,8 +10,8 @@
 ## ✅ What Has Been Implemented
 
 ### **1. Code Files (100% Complete)**
-- ✅ `assignment1_fintech_crewai.py` - CrewAI implementation with 6 agents
-- ✅ `assignment2_fintech_adk.py` - ADK implementation with advanced features
+- ✅ `fintech_crewai.py` - CrewAI implementation with 6 agents
+- ✅ `fintech_adk.py` - ADK implementation with advanced features
 - ✅ `requirements.txt` - All dependencies configured
 - ✅ Both scripts fixed to work without external search tools (avoiding rate limits)
 
@@ -44,10 +44,10 @@ Once the API resets, simply run:
 
 ```bash
 # Assignment 1 (CrewAI)
-python assignment1_fintech_crewai.py
+python fintech_crewai.py
 
 # Assignment 2 (ADK) 
-python assignment2_fintech_adk.py
+python fintech_adk.py
 ```
 
 ### **Step 3: Review Generated Outputs**
@@ -188,8 +188,8 @@ The scripts will create:
 
 ```
 crewai_fintech_lab1/
-├── assignment1_fintech_crewai.py     # Main CrewAI script
-├── assignment2_fintech_adk.py        # Main ADK script
+├── fintech_crewai.py     # Main CrewAI script
+├── fintech_adk.py        # Main ADK script
 ├── requirements.txt                  # Dependencies
 ├── OBJECTIVES_AND_SCOPE.md          # Project scope (500 words)
 ├── EXPECTED_OUTCOME.md              # Expected results
@@ -231,8 +231,8 @@ You can include:
 ## ✅ Next Steps
 
 1. **Wait 18 minutes** for API reset OR upgrade Groq account
-2. **Run** `python assignment1_fintech_crewai.py`
-3. **Run** `python assignment2_fintech_adk.py`
+2. **Run** `python fintech_crewai.py`
+3. **Run** `python fintech_adk.py`
 4. **Review** generated output files
 5. **Submit** code + documentation + outputs + report
 

@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 ### Option 1: Run Assignment 1 (CrewAI)
 ```bash
-python assignment1_fintech_crewai.py
+python fintech_crewai.py
 ```
 
 This will:
@@ -30,7 +30,7 @@ This will:
 
 ### Option 2: Run Assignment 2 (ADK)
 ```bash
-python assignment2_fintech_adk.py
+python fintech_adk.py
 ```
 
 This will:
@@ -42,8 +42,8 @@ This will:
 ## 📁 WHAT YOU HAVE
 
 ### Completed Files:
-✅ `assignment1_fintech_crewai.py` - CrewAI implementation (FIXED)
-✅ `assignment2_fintech_adk.py` - ADK implementation (FIXED)  
+✅ `fintech_crewai.py` - CrewAI implementation (FIXED)
+✅ `fintech_adk.py` - ADK implementation (FIXED)  
 ✅ `requirements.txt` - Updated dependencies
 ✅ `OBJECTIVES_AND_SCOPE.md` - Project scope (500 words)
 ✅ `EXPECTED_OUTCOME.md` - Expected deliverables
@@ -82,7 +82,7 @@ Both Python files are ready to execute. Simply run them!
 
 ## ⚡ NEXT STEPS
 
-1. **Run the programs**: `python assignment1_fintech_crewai.py`
+1. **Run the programs**: `python fintech_crewai.py`
 2. **Wait for completion**: 3-5 minutes for assignment 1
 3. **Review output files**: Check generated .md and .json files
 4. **Review docs**: Read all documentation files

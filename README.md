@@ -46,8 +46,8 @@ This project implements a comprehensive multi-agent system for automated financi
 
 ```
 .
-├── assignment1_fintech_crewai.py    # CrewAI implementation
-├── assignment2_fintech_adk.py       # ADK implementation
+├── fintech_crewai.py    # CrewAI implementation
+├── fintech_adk.py       # ADK implementation
 ├── requirements.txt                 # Python dependencies
 ├── OBJECTIVES_AND_SCOPE.md         # Project objectives and scope
 ├── EXPECTED_OUTCOME.md             # Expected deliverables
@@ -99,7 +99,7 @@ For this project, the API key is already provided in the code.
 #### Assignment 1: CrewAI Implementation
 
 ```bash
-python assignment1_fintech_crewai.py
+python fintech_crewai.py
 ```
 
 This will:
@@ -110,7 +110,7 @@ This will:
 #### Assignment 2: ADK Implementation
 
 ```bash
-python assignment2_fintech_adk.py
+python fintech_adk.py
 ```
 
 This will:
@@ -128,7 +128,7 @@ This will:
 Edit the `company_name` variable in the main function:
 
 ```python
-# In assignment1_fintech_crewai.py or assignment2_fintech_adk.py
+# In fintech_crewai.py or fintech_adk.py
 company_name = "Your Company Name Here"
 ```
 
