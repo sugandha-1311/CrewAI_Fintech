@@ -134,7 +134,7 @@ company_name = "Your Company Name Here"
 
 ### Add New Agents
 
-#### CrewAI (Assignment 1):
+#### CrewAI:
 
 ```python
 new_agent = Agent(
@@ -148,7 +148,7 @@ new_agent = Agent(
 )
 ```
 
-#### ADK (Assignment 2):
+#### ADK:
 
 ```python
 new_agent = EnhancedAgent(
