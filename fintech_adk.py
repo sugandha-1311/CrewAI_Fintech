@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import Dict, List, Any
 from dataclasses import dataclass, field, asdict
 from dotenv import load_dotenv
-from langchain_groq import ChatGroq
+import ollama
 
 # Load environment variables
 load_dotenv()
@@ -27,11 +27,19 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Initialize Groq LLM
-llm = ChatGroq(
-    model='llama-3.3-70b-versatile',
-    api_key=os.getenv('GROQ_API_KEY')
-)
+# Custom Ollama LLM wrapper
+class OllamaLLM:
+    def __init__(self, model='gemma3:1b'):
+        self.model = model
+    
+    def invoke(self, prompt):
+        response = ollama.chat(model=self.model, messages=[{'role': 'user', 'content': prompt}])
+        class Response:
+            content = response['message']['content']
+        return Response()
+
+# Initialize Ollama LLM
+llm = OllamaLLM(model='gemma3:1b')
 
 @dataclass
 class ExecutionLog:

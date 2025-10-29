@@ -6,17 +6,53 @@ Multi-Agent System for Financial Research and Investment Analysis
 import os
 from dotenv import load_dotenv
 from crewai import Agent, Task, Crew
-from langchain_groq import ChatGroq
 from pydantic import BaseModel, Field
+import ollama
 
 # Load environment variables
 load_dotenv()
 
-# Initialize Groq LLM
-llm = ChatGroq(
-    model='llama-3.3-70b-versatile',
-    api_key=os.getenv('GROQ_API_KEY')
-)
+# Use CrewAI's built-in OpenAI stub but route to Ollama
+import ollama
+
+# Simple wrapper that looks like an LLM to CrewAI
+class OllamaLLM:
+    def __init__(self, model='gemma3:1b'):
+        self.model_name = model
+        self.model = model
+    
+    def __call__(self, *args, **kwargs):
+        return self
+    
+    def bind(self, **kwargs):
+        return self
+    
+    def invoke(self, input_data):
+        if isinstance(input_data, str):
+            prompt = input_data
+        elif isinstance(input_data, list):
+            prompt = input_data[-1].get('content', '') if isinstance(input_data[-1], dict) else str(input_data[-1])
+        else:
+            prompt = str(input_data)
+        
+        response = ollama.chat(model=self.model, messages=[{'role': 'user', 'content': prompt}])
+        result = response['message']['content']
+        
+        class Response:
+            def __init__(self, content):
+                self.content = content if isinstance(content, str) else str(content)
+                self.text = content if isinstance(content, str) else str(content)
+            
+            def __str__(self):
+                return str(self.content)
+            
+            def __repr__(self):
+                return str(self.content)
+        
+        return Response(result)
+
+# Initialize Ollama LLM
+llm = OllamaLLM(model='gemma3:1b')
 
 # Custom financial metrics tool
 class FinancialMetrics(BaseModel):
