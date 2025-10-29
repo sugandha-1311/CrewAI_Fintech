@@ -7,52 +7,19 @@ import os
 from dotenv import load_dotenv
 from crewai import Agent, Task, Crew
 from pydantic import BaseModel, Field
-import ollama
+from langchain_openai import ChatOpenAI
 
 # Load environment variables
 load_dotenv()
 
-# Use CrewAI's built-in OpenAI stub but route to Ollama
-import ollama
-
-# Simple wrapper that looks like an LLM to CrewAI
-class OllamaLLM:
-    def __init__(self, model='gemma3:1b'):
-        self.model_name = model
-        self.model = model
-    
-    def __call__(self, *args, **kwargs):
-        return self
-    
-    def bind(self, **kwargs):
-        return self
-    
-    def invoke(self, input_data):
-        if isinstance(input_data, str):
-            prompt = input_data
-        elif isinstance(input_data, list):
-            prompt = input_data[-1].get('content', '') if isinstance(input_data[-1], dict) else str(input_data[-1])
-        else:
-            prompt = str(input_data)
-        
-        response = ollama.chat(model=self.model, messages=[{'role': 'user', 'content': prompt}])
-        result = response['message']['content']
-        
-        class Response:
-            def __init__(self, content):
-                self.content = content if isinstance(content, str) else str(content)
-                self.text = content if isinstance(content, str) else str(content)
-            
-            def __str__(self):
-                return str(self.content)
-            
-            def __repr__(self):
-                return str(self.content)
-        
-        return Response(result)
-
-# Initialize Ollama LLM
-llm = OllamaLLM(model='gemma3:1b')
+# Use OpenAI-compatible endpoint (Ollama supports this)
+# Configure Ollama to accept OpenAI API calls
+llm = ChatOpenAI(
+    model_name="gemma3:1b",
+    openai_api_key="ollama",  # Ollama doesn't require real key
+    openai_api_base="http://localhost:11434/v1",  # Ollama's OpenAI-compatible endpoint
+    temperature=0.7
+)
 
 # Custom financial metrics tool
 class FinancialMetrics(BaseModel):
