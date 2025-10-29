@@ -27,19 +27,30 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Custom Ollama LLM wrapper
-class OllamaLLM:
+# Use OpenAI-compatible endpoint (Ollama supports this)
+from langchain_openai import ChatOpenAI
+
+# Custom Ollama wrapper that uses OpenAI-compatible endpoint
+class OllamaLLMWrapper:
     def __init__(self, model='gemma3:1b'):
         self.model = model
+        self._client = ChatOpenAI(
+            model_name=model,
+            openai_api_key="ollama",
+            openai_api_base="http://localhost:11434/v1",
+            temperature=0.7
+        )
     
     def invoke(self, prompt):
-        response = ollama.chat(model=self.model, messages=[{'role': 'user', 'content': prompt}])
-        class Response:
-            content = response['message']['content']
-        return Response()
+        # Call Ollama through OpenAI-compatible endpoint
+        response = self._client.invoke(prompt)
+        return response
+    
+    def __getattr__(self, name):
+        return getattr(self._client, name)
 
 # Initialize Ollama LLM
-llm = OllamaLLM(model='gemma3:1b')
+llm = OllamaLLMWrapper(model='gemma3:1b')
 
 @dataclass
 class ExecutionLog:
